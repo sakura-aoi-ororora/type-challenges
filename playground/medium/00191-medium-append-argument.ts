@@ -23,7 +23,7 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type AppendArgument<Fn, A> = any
+type AppendArgument<Fn extends Function, A> = Fn extends (...a: infer Arg) => infer R ? (...a: [...Arg, A]) => R : never
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

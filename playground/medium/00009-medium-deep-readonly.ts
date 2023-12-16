@@ -36,7 +36,15 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type DeepReadonly<T> = any
+type DeepReadonly<T> = {
+  readonly [k in keyof T]: T[k] extends Record<any, any>
+    ? T[k] extends Function
+      ? T[k]
+      : DeepReadonly<T[k]>
+    : T[k]
+}
+
+type A = DeepReadonly<X2>
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

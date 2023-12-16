@@ -18,7 +18,9 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type Trim<S extends string> = any
+type TrimChars = " " | "\n" | "\t"
+
+type Trim<S extends string> = S extends `${TrimChars}${infer R}` ? Trim<R> : S extends `${infer Q}${TrimChars}` ? Trim<Q> : S
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

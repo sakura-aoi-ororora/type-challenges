@@ -19,7 +19,9 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type AppendToObject<T, U, V> = any
+type AppendToObject<T, U extends PropertyKey, V> = {
+  [K in keyof T | U]: K extends keyof T ? T[K] : V;
+};
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

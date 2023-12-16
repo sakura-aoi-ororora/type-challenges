@@ -18,7 +18,9 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type Replace<S extends string, From extends string, To extends string> = any
+type Replace<S extends string, From extends string, To extends string> = From extends "" ? S : S extends `${infer fir}${From}${infer sec}` ? `${fir}${To}${sec}` : S
+
+type a = Replace<"AAAAAA", "", "B">
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

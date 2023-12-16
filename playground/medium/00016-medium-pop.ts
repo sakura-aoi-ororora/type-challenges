@@ -26,7 +26,7 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type Pop<T extends any[]> = any
+type Pop<T extends any[]> = T extends [...infer A, infer _] ? A : []
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

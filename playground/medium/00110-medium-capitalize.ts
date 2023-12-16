@@ -18,7 +18,7 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type MyCapitalize<S extends string> = any
+type MyCapitalize<S extends string> = S extends `${infer A}${infer Tair}` ? `${Uppercase<A>}${Tair}` : S
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

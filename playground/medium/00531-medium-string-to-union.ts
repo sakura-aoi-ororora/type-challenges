@@ -19,7 +19,9 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type StringToUnion<T extends string> = any
+type Chars<S extends string, T extends string[] = []> = S extends `${infer A}${infer B}` ? Chars<B, [...T, A]> : T
+
+type StringToUnion<T extends string> = Chars<T>[number]
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
